@@ -31,4 +31,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'foursquare' => [
+        'key' => env('FOURSQUARE_API_KEY', ''),
+    ],
+
+    'open_weather_map' => [
+        'key' => env('OPENWEATHERAPP_API_KEY', ''),
+    ]
 ];

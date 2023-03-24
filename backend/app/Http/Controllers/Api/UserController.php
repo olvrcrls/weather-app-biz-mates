@@ -37,5 +37,5 @@ class UserController extends Controller
      */
     public function getSavedWeathers(User $user)
     {
-}       
+    }
 }

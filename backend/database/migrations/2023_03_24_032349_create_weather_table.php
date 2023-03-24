@@ -14,6 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('city'); // This should be a city ID but we will make it simpler.
             $table->foreignId('user_id')->index();
+            // Temperatures are stored in Kelvin.
             $table->decimal('temperature', 6, 2);
             $table->decimal('max_temperature', 6, 2);
             $table->decimal('min_temperature', 6, 2);

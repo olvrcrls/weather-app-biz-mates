@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Weather;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class WeatherRepository
 {
@@ -25,7 +27,25 @@ class WeatherRepository
         $newWeather = $this->model()->query()
             ->create($data);
 
-        return $newWeather;        
+        return $newWeather;
+    }
+
+    /**
+     * Removes the particular weather information
+     * from the user
+     * @param int $id
+     * @return bool
+     */
+    public function remove(int $id): bool
+    {
+        try {
+            $record = $this->model()->find($id);
+            $record->delete();
+            return true;
+        } catch (Exception $e) {
+            Log::error("ERROR: " . $e->getMessage());
+            return false;
+        }
     }
 
     /**
