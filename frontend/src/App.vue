@@ -4,8 +4,6 @@ import HomeView from './views/HomeView.vue';
 
 <template>
   <div>
-    <div class="text-center">
-      <HomeView />
-    </div>
+    <HomeView />
   </div>
 </template>
