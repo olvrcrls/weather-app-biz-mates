@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
             if (! is_array($data)) {
                 $data = [$data];
             }
-            
+
             return response()->json([
                 'error' => false,
                 'data' => $data,
@@ -47,5 +47,5 @@ class AppServiceProvider extends ServiceProvider
                 'message' => $error
             ], $status_code);
         });
-    }   
+    }
 }
