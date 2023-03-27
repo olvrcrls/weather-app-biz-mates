@@ -155,7 +155,7 @@ export default {
 
 
 <template>
-  <div class="mb-8 text-white">
+  <div class="mt-4 mb-8 text-white">
     <div class="text-gray-800 places-input">
       <input type="text" class="w-full p-6 text-2xl font-semibold rounded-md"
         @change="getForecast()" v-model="search.query"
