@@ -2,9 +2,10 @@
 
 1. Navigate to **backend** folder and open terminal then run the command: `composer install && npm install`
 
-2. Run `php artisan key:generate`.
+2. Make sure you have configured the `.env` file on your local project copy and its database. To do this try running `cp .env.example .env` to have a copy of the environment configuration, the API keys are already pre-installed on the `.env.example` file.
 
-3. Make sure you have configured the `.env` file on your local project copy and its database.
+3. Run `php artisan key:generate`.
+
 
 4. Navigate to **frontend** folder and open terminal then run the command: `npm install`
 
@@ -15,10 +16,8 @@
 
 2. Navigate to **frontend** folder and open terminal then run the command: `npm run dev`. This should boot up your local server for the front-end which is **http://localhost:5173/**
 
-## Images:
-
-## Mobile Display:
-# Weather Information
+# Mobile Display:
+#Weather Information
 ![Weather Information](./images/mobile_weather.png)
 
 # Nearby Places Information
