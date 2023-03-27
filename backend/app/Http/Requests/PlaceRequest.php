@@ -22,7 +22,7 @@ class PlaceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'query' => 'required|string',
+            'q' => 'required|string',
             'limit' => 'integer|min:1'
         ];
     }

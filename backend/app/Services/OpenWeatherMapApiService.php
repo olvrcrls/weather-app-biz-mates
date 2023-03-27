@@ -67,8 +67,10 @@ class OpenWeatherMapApiService extends BaseService
         if (!empty($data)) {
             foreach ($data as $i => $forecast) {
                 $output[$i] = [
+                    'id' => ($i + 1),
                     'date' => Arr::get($forecast, 'dt_txt', '0000-00-00'),
-                    'icon' => Arr::get($forecast, 'weather.0.icon', ''),
+                    'icon' => 'http://openweathermap.org/img/w/' . Arr::get($forecast, 'weather.0.icon', '') . '.png',
+                    // 'icon' => Arr::get($forecast, 'weather.0.icon', ''),
                     'weather' => Arr::get($forecast, 'weather.0.main', 'N/A'),
                     'description' => Arr::get($forecast, 'weather.0.description', 'N/A'),
                     'wind' => Arr::get($forecast, 'wind', 'N/A'),

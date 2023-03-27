@@ -13,7 +13,7 @@ class PlaceRepository
      */
     public function getNearPlaces(array $data): JsonResponse
     {
-        $query = $data['query'];
+        $query = $data['q'];
         $limit = $data['limit'];
 
         return app(FourSquareApiService::class)->fetchNearPlaces($query, $limit);
