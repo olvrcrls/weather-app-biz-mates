@@ -11,8 +11,11 @@ class PlaceRepository
      * Fetch the places near the search query
      * Ex. "Osaka JP" it will fetch places in Osaka, JP
      */
-    public function getNearPlaces(string $query, int $limit): JsonResponse
+    public function getNearPlaces(array $data): JsonResponse
     {
+        $query = $data['query'];
+        $limit = $data['limit'];
+
         return app(FourSquareApiService::class)->fetchNearPlaces($query, $limit);
     }
 }

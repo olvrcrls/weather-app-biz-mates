@@ -22,10 +22,10 @@ class WeatherRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'query' => 'required|string',
+            'q' => 'nullable|string',
             'limit' => 'integer|min:1',
-            'lat' => 'float',
-            'long' => 'float',
+            'lat' => 'numeric',
+            'long' => 'numeric',
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WeatherRequest;
 use App\Repositories\WeatherRepository;
+use Illuminate\Http\Response;
 
 class WeatherController extends Controller
 {
@@ -20,6 +21,12 @@ class WeatherController extends Controller
      */
     public function index(WeatherRequest $request)
     {
-        return $this->repository->fetchForecast($request()->query, $request->limit);
+        $data = $request->validated();
+
+        $query = $data['q'] ?? '';
+        $limit = $data['limit'] ?? 5;
+        $lat = $data['lat'] ?? null;
+        $long = $data['long'] ?? null;
+        return $this->repository->fetchForecast($query, $limit, $lat, $long);
     }
 }

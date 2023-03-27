@@ -1,5 +1,5 @@
 <script setup>
-import WeatherApp from '../components/WeatherApp.vue'
+import WeatherApp from '../components/WeatherApp.vue';
 </script>
 
 <template>

@@ -33,11 +33,13 @@ class OpenWeatherMapApiService extends BaseService
      * @param string $search
      * @return JsonResponse
      */
-    public function getForecast(string $search, int $limit = 5): JsonResponse
+    public function getForecast(string $search, int $limit = 5, float|null $lat = null, float|null $long = null): JsonResponse
     {
         $query = urlencode($search);
+        $searchUrl = (empty($search)) ? "api.openweathermap.org/data/2.5/forecast?lat={$lat}&lon={$long}" : "api.openweathermap.org/data/2.5/forecast?q={$query}";
+
         $response = Http::get(
-            "api.openweathermap.org/data/2.5/forecast?q={$query}&cnt={$limit}&mode=json&units=" . $this->unitMeasure() . "&appid=" . $this->apiKey()
+            "{$searchUrl}&cnt={$limit}&mode=json&units=" . $this->unitMeasure() . "&appid=" . $this->apiKey()
         );
 
         if ($response->failed()) {

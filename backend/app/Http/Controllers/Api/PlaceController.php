@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PlaceRequest;
 use App\Repositories\PlaceRepository;
-use Illuminate\Http\Request;
 
 class PlaceController extends Controller
 {
@@ -21,7 +20,6 @@ class PlaceController extends Controller
      */
     public function index(PlaceRequest $request)
     {
-        // TODO: Request latitude and longitude to retrieved near places
-        return $this->repository->getNearPlaces($request->query, $request->limit);
+        return $this->repository->getNearPlaces($request->validated());
     }
 }

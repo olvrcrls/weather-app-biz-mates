@@ -11,9 +11,9 @@ class WeatherRepository
     /**
      * Fetches the weather forecast from OpenWeatherMap API
      */
-    public function fetchForecast(string $query, int $limit = 5): JsonResponse
+    public function fetchForecast(string $query, int $limit = 5, float|null $lat, float|null $long): JsonResponse
     {
-        return app(OpenWeatherMapApiService::class)->getForecast($query, $limit);
+        return app(OpenWeatherMapApiService::class)->getForecast($query, $limit, $lat, $long);
     }
 
     /**
