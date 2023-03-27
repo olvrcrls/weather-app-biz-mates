@@ -20,6 +20,15 @@ class OpenWeatherMapApiService extends BaseService
     }
 
     /**
+     * Fetches the type of unit of measure that will be the default
+     * display.
+     */
+    public function unitMeasure(): string
+    {
+        return config('services.open_weather_map.default_temperature');
+    }
+
+    /**
      * Fetch forecast on the search string
      * @param string $search
      * @return JsonResponse
@@ -28,7 +37,7 @@ class OpenWeatherMapApiService extends BaseService
     {
         $query = urlencode($search);
         $response = Http::get(
-            "api.openweathermap.org/data/2.5/forecast?q={$query}&cnt={$limit}&mode=json&units=metric&appid=" . $this->apiKey()
+            "api.openweathermap.org/data/2.5/forecast?q={$query}&cnt={$limit}&mode=json&units=" . $this->unitMeasure() . "&appid=" . $this->apiKey()
         );
 
         if ($response->failed()) {
@@ -40,7 +49,7 @@ class OpenWeatherMapApiService extends BaseService
             'weathers' => $this->formatWeatherForecast($results['list']),
             'city' => $results['city'] ?? [],
         ];
-        
+
         return Response::success($data);
     }
 
@@ -57,6 +66,7 @@ class OpenWeatherMapApiService extends BaseService
             foreach ($data as $i => $forecast) {
                 $output[$i] = [
                     'date' => Arr::get($forecast, 'dt_txt', '0000-00-00'),
+                    'icon' => Arr::get($forecast, 'weather.0.icon', ''),
                     'weather' => Arr::get($forecast, 'weather.0.main', 'N/A'),
                     'description' => Arr::get($forecast, 'weather.0.description', 'N/A'),
                     'wind' => Arr::get($forecast, 'wind', 'N/A'),

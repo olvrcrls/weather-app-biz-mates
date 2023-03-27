@@ -23,7 +23,7 @@ class FourSquareApiService extends BaseService
      * @param string $query
      * @return JsonResponse
      */
-    public function search(string $query, int $limit = 5): JsonResponse
+    public function fetchNearPlaces(string $query, int $limit = 5): JsonResponse
     {
         $urlQuery = urlencode($query);
         $response = Http::withHeaders([

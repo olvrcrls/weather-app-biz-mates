@@ -3,49 +3,17 @@
 namespace App\Repositories;
 
 use App\Models\Weather;
-use Exception;
-use Illuminate\Support\Facades\Log;
+use App\Services\OpenWeatherMapApiService;
+use Illuminate\Http\JsonResponse;
 
 class WeatherRepository
 {
     /**
-     * Model instance of the repository
-     * @return Weather
+     * Fetches the weather forecast from OpenWeatherMap API
      */
-    public function model(): Weather
+    public function fetchForecast(string $query, int $limit = 5): JsonResponse
     {
-        return new Weather();
-    }
-
-    /**
-     * Saves the weather information
-     * @param array $data
-     * @return Weather $newWeather
-     */
-    public function save(array $data)
-    {
-        $newWeather = $this->model()->query()
-            ->create($data);
-
-        return $newWeather;
-    }
-
-    /**
-     * Removes the particular weather information
-     * from the user
-     * @param int $id
-     * @return bool
-     */
-    public function remove(int $id): bool
-    {
-        try {
-            $record = $this->model()->find($id);
-            $record->delete();
-            return true;
-        } catch (Exception $e) {
-            Log::error("ERROR: " . $e->getMessage());
-            return false;
-        }
+        return app(OpenWeatherMapApiService::class)->getForecast($query, $limit);
     }
 
     /**

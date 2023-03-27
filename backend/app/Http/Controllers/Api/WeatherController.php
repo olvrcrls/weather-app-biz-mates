@@ -3,48 +3,23 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Weather;
-use Illuminate\Http\Request;
+use App\Http\Requests\WeatherRequest;
+use App\Repositories\WeatherRepository;
 
 class WeatherController extends Controller
 {
+    private $repository;
+
+    public function __construct(WeatherRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(WeatherRequest $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Weather $weather)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Weather $weather)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Weather $weather)
-    {
-        //
+        return $this->repository->fetchForecast($request()->query, $request->limit);
     }
 }

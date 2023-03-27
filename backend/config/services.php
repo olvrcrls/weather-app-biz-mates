@@ -37,5 +37,9 @@ return [
 
     'open_weather_map' => [
         'key' => env('OPENWEATHERAPP_API_KEY', ''),
+        // standard - Kelvin
+        // metric - Celcius
+        // imperial - Fahrenheit
+        'default_temperature' => 'metric',
     ]
 ];
